@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>linked list</p>
+    <p>每一個node會分兩塊，一塊存資料，一塊存link（指向下一個)</p>
+    <p>不能把他看成array,而是一個list,裡面每個數字等於一個node(obj)，裡面包含val & next</p>
+    <script>
+        class linkedList {
+            constructor(){
+                this.length = 0;
+                this.head = null;
+            }
+            append(val,next){
+                let node = new ListNode(val,next);
+                // 第一項
+                if(!this.head){
+                    this.head = node;
+                // 不是第一項
+                }else{
+                    // 從第一個開始遍歷，找到最後一個
+                    let tail = this.head;
+                    while(tail.next!==null){
+                        tail=tail.next
+                    }
+                    // 在最後一個位置補上新增的node
+                    tail.next = node;
+                }
+                this.length++
+            }
+        }
+        class ListNode {
+            constructor(val,next) {
+                this.val = (val===undefined ? 0 : val);
+                this.next = (next===undefined ? null : next);
+            }
+        }
+        
+        function arrToLinkedList (arr){
+            var nodeArr = [];
+            let list = new linkedList()
+            for(var i=0;i<arr.length ;i++){
+                nodeArr.push(new ListNode(arr[i],arr[i+1]))
+                list.append(arr[i],nodeArr[i+1])
+            }
+            return list;
+        }
+        function linkedListToArr(listHead){
+            let arr = [];
+            let currNode = listHead
+            while(currNode !== null){
+                arr.push(currNode.val)
+                currNode = currNode.next
+            }
+            return arr;
+        }
+        
+        var mergeTwoLists = function(l1, l2) {
+            // 不知道誰要放開頭，所以弄個假開頭
+            let mergedHead = {val:-1,next:null}
+            // 現在位置在假開頭
+            let currentNode = mergedHead;
+            while(l1 && l2){
+                // 看誰比較小
+                if(l1.val <= l2.val){
+                    // 比較小的放入linked list下一個，並且換比下一個
+                    currentNode.next = l1
+                    l1 = l1.next
+                }else{
+                    currentNode.next = l2
+                    l2 = l2.next
+                }
+                // 現在位置往後移一個
+                currentNode = currentNode.next
+            }
+            // 最後會還剩最後一個沒放進去。就看最後留誰，就把那個塞進去
+            currentNode.next = l1 || l2
+            // 假開頭記得不要回喔～下一個node才是真開頭
+            return linkedListToArr(mergedHead.next)
+        }
+        console.log(mergeTwoLists(arrToLinkedList([1,2,4]).head,arrToLinkedList([1,3,4]).head))
+        // [1,2,4]
+        // [1,3,4]
+    </script>
+</body>
+</html>

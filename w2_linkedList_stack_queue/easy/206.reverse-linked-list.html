@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>linked list 要想成：</p>
+    <p> head：
+        {
+            val:{val:0,next:1},
+            next:{  
+                val:{val:1,next:2}
+                next:{
+                    val:{}
+                    next:{}
+                }
+            }
+
+        }
+
+    </p>
+    <script>
+        class linkedList {
+            constructor(){
+                this.length = 0;
+                this.head = null;
+            }
+            append(val,next){
+                let node = new ListNode(val,next);
+                // 第一項
+                if(!this.head){
+                    this.head = node;
+                // 不是第一項
+                }else{
+                    // 從第一個開始遍歷，找到最後一個
+                    let tail = this.head;
+                    while(tail.next!==null){
+                        tail=tail.next
+                    }
+                    // 在最後一個位置補上新增的node
+                    tail.next = node;
+                }
+                this.length++
+            }
+        }
+        class ListNode {
+            constructor(val,next) {
+                this.val = (val===undefined ? 0 : val);
+                this.next = (next===undefined ? null : next);
+            }
+        }
+        
+        function arrToLinkedList (arr){
+            var nodeArr = [];
+            let list = new linkedList()
+            for(var i=0;i<arr.length ;i++){
+                nodeArr.push(new ListNode(arr[i],arr[i+1]))
+                list.append(arr[i],nodeArr[i+1])
+            }
+            return list;
+        }
+
+        function linkedListToArr(listHead){
+            let arr = [];
+            let currNode = listHead
+            while(currNode !== null){
+                arr.push(currNode.val)
+                currNode = currNode.next
+            }
+            return arr;
+        }
+        
+        var reverseList = function(arr){
+            var list = arrToLinkedList(arr);
+
+            // 如果是[]，回傳null
+            if(!list.head){
+                return null
+            }
+            // 如果只有一項，回傳自己
+            if(!list.head.next){
+                return list.head;
+            }
+            // 把自己的next指向前一個（第一個指向null），遍歷每個node(直到下一個=null為止)
+            let currNode = list.head;
+            let prevNode = null;
+            let nextNode;
+            while(nextNode !== null){
+                nextNode = currNode.next   // 找出下一個 
+                currNode.next = prevNode   // 把當前的指向前一個
+                prevNode = currNode   // 讓前一個等於原本的當前
+                currNode = nextNode   // 讓當前等於下一個node
+            }
+            return linkedListToArr(prevNode)
+        }
+
+
+        // reverseList([1,2,3,4,5])
+        console.log(reverseList([1,2,3,4,5]))
+
+
+        // {
+        //     自己是一個node
+        //     val: 0,    // 存放資資料
+        //     next:{     // next指向下一個node
+        //         val:1, // 存放資料
+        //         next:{
+        //             val: data
+        //             next:{
+        //                 Node
+        //             }
+        //         }
+        //     }
+        
+        // }
+
+
+        // 一行炫技寫法？
+        // var reverseList = function(head) {
+        // let [prev, current] = [null, head]
+        // while(current) {
+        //     [current.next, prev, current] = [prev, current, current.next]
+        // }
+        // return prev
+        // }
+    </script>
+</body>
+</html>

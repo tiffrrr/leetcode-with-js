@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+Given an array A of non-negative integers, <br>
+return an array consisting of all the even elements of A, <br>
+followed by all the odd elements of A.<br>
+
+You may return any answer array that satisfies this condition.<br>
+<br>
+input: 給一個沒有負數的數字陣列<br>
+output: 回傳前面是偶數後面是奇數的陣列<br>
+<br>
+Example 1:<br>
+<br>
+Input: [3,1,2,4]<br>
+Output: [2,4,3,1]<br>
+The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.<br>
+<br>
+Note:<br>
+
+1 <= A.length <= 5000<br>
+0 <= A[i] <= 5000<br>
+<br>
+ @param {number[]} A<br>
+ @return {number[]}<br>
+
+<p>自己想的解法：跑迴圈，偶數放B陣列，奇數放C陣列再合併</p>
+<p>其它解法：跑迴圈，偶數unshift從前面B陣列，奇數push從後面塞B陣列</p>
+
+</body>
+<script>
+    var sortArrayByParity = function(A) {
+        if(A.length<2){
+            return A;
+        }
+        let newArr=[];
+        A.forEach(a => {
+            a%2 ==0 ? newArr.unshift(a):newArr.push(a);
+        });
+        console.log(newArr);
+    };
+
+    sortArrayByParity([1,4,7,2,5,9,1,3,0,6])
+
+//看到的別的解法（其實和自己想的差不多概念）
+    var sortArrayByParity2 = function(A) {
+        return [...A.filter(v => v % 2 === 0), ...A.filter(v => v % 2 !== 0)];
+    };
+
+</script>
+</html>

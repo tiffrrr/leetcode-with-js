@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+    用queue（先進先出）實作stack（先進後出）的功能
+    可用js array原生功能
+    unshift -> array <- push
+    shift <- array -> pop
+
+
+    想像成，只能用push跟shift兩個功能，達到stack的效果
+
+
+    </p>
+    <p>js:array在操作的時候，會一直不斷改變length，所以length是不確定的</p>
+        <p>要不然就把開始的length先存變數，要不然就用while</p>
+    <script>
+        // 單個queue
+        var MyStack = function() {
+            this.queue=[];
+        };
+
+        //  stack 跟 queue新增，都是直接加到最後面，所以直接加就好
+        MyStack.prototype.push = function(x) {
+            this.queue.push(x);
+        };
+
+
+        // 目的：把queue依序將第一個放到最後面，直到原本的最後一個在第一個
+        // [1,2,3,4] -> [4,1,2,3]
+        // 將第一個移除（4）
+        // queue仍是[1,2,3]沒變
+        MyStack.prototype.pop = function() {
+            for(i=1;i<this.queue.length;i++){
+                this.queue.push(this.queue.shift())
+            }
+            let last = this.queue.shift();
+            return last;
+        };
+
+        // 同上
+        MyStack.prototype.top = function() {
+            for(i=1;i<this.queue.length;i++){
+                this.queue.push(this.queue.shift())
+            }
+            let lastOne = this.queue.shift();
+            this.queue.push(lastOne)
+            return lastOne;
+        };
+
+        MyStack.prototype.empty = function() {
+            if(this.queue.length > 0){
+                return false;
+            }else{
+                return true;
+            }
+        };
+
+
+        // 也可以雙個queue，弄一個temp=[],
+        // 把queue依序將第一個移除放入temp中，直到原本的最後一個在第一個
+        // queue = [1,2,3,4]  -->  queue = [4] temp=[1,2,3]
+        // 移除queue的內容，再讓queue等於temp =[1,2,3]
+    </script>
+</body>
+</html>

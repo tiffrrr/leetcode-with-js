@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>stack:一種後進先出的資料結構</p>
+    <p>
+        Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is
+        valid.
+
+        An input string is valid if:
+
+        Open brackets must be closed by the same type of brackets.
+        Open brackets must be closed in the correct order.
+        Note that an empty string is also considered valid.
+    </p>
+    <p>
+        {[()]} t
+        {[(])} f
+        console.log( isValid("") ); // true
+        console.log( isValid("]") ); // false
+        console.log( isValid("{{[[(())]]}}") ); // true
+        console.log( isValid("[]{()()[[{}]]}") ); // true
+        console.log( isValid("a b [d] { (g) (h) i [-[ {;} ]-] }") ); // true
+    </p>
+</body>
+<script>
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+ var isValid = function(s) {
+    var arr=s.split("")
+    var half=arr.length/2
+    var frontArr,endArr;
+    if(half % 1 == 0){
+        var frontArr=[];
+        for(i=0;i<half;i++){
+            frontArr.push(arr[i])
+        }
+        for(i=half;i<arr.length;i++){
+            endArr.
+        }
+    }else{
+        return "false";
+    }
+};
+
+isValid("{{[[(())]]}}")
+</script>
+</html>

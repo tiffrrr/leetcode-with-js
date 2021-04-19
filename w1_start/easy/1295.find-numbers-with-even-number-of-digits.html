@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        
+    </p>
+    <script>
+        // var findNumbers = function(nums) {
+        //     var count = 0;
+        //     nums.forEach(element => {
+        //         element.toString().length % 2 == 0 ? count++ : count = count;
+        //     });
+        //     return count;
+        // };
+        // console.log(findNumbers([12,345,2,6,7896]))
+        
+        
+        // 網上其它solution：用位元運算，比除法快
+        // 偶數個數的話會是10  10  & 1   最後一位會是0
+        // 奇數個數的話會是11   11  & 1  最後一位會是1
+        const findNumbers = nums => {
+            let ret = 0;
+            for (let i = 0; i < nums.length; ++i) {
+                console.log(nums[i].toString().length & 1)
+                (nums[i].toString().length & 1) === 0 && ++ret;
+            }
+            return ret;
+        };
+        findNumbers([12,345,2,6,7896])
+
+    </script>
+</body>
+</html>

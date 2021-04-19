@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>js語法： arr[0]-- 直接console的話會是原本的數字
+
+        ex:arr[0] = 1
+        arr[0]--(現在還是1) >0 就是 1>0
+        要比完後，arr[0]才會=0
+    </p>
+    <script>
+        // 原做法，是對的，但就是一個蘿蔔一個坑，笨笨的
+        var ParkingSystem = function(big, medium, small) {
+            this.big = big;
+            this.medium = medium;
+            this.small = small;
+        };
+
+        ParkingSystem.prototype.addCar = function(carType) {
+            if(carType ==1){
+                if(this.small > 0){
+                    this.small--
+                }else{
+                    return false;
+                }
+            }
+            if(carType ==2){
+                this.medium--
+                if(this.medium > 0){
+                }else{
+                    return false;
+                }
+            }
+            if(carType == 3){
+                if(this.big > 0){
+                    this.big--
+                }else{
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        // 參考最佳解：
+        // 1，2，3代表大中小，剛好可以和陣列的順序對應！！！
+        // var ParkingSystem = function(big, medium, small) {
+        //     this.sizes = [big,medium,small]
+        // }
+
+        // ParkingSystem.prototype.addCar = function(carType) {
+        //     return this.sizes[carType -1 ]-- >= 0
+       // 原本是0，減完就會變-1，<0，return false
+        // arr[0]--，會是原本的數字，所以是>0，不是>=0，（原本要是1才可以停車）
+        // 比完後會自己把你-1
+
+
+        
+</script>
+</body>
+</html>

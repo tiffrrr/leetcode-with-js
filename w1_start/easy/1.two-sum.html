@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>js語法： for each 裡面不能用return ，無效</p>
+    <p>map/obj 不熟/忘記了</p>
+    <p>讀書會問題：直接在原arr indexOf,跟丟到另一個物件比對的差別？？</p>
+    <script>
+        // 第一次解法： 雙重迴圈兩兩相加
+        // 出現問題：自己會跟自己加到。需要另外寫條件移除。效能差。
+        // var twoSum = function(nums, target) {
+        //     var i,j;
+        //     var output=[];
+        //     for(i=0;i<nums.length;i++){
+        //         for(j=1;j<nums.length;j++){
+        //             if(i!==j && nums[i]+nums[j] == target){
+        //                 output.push(i);
+        //                 output.push(j);
+        //             }
+        //         }
+        //     }
+        // };
+        // twoSum([2,7,11,15,23],30)
+
+
+        // 解法修改：
+        // 1.找出期望找到的數
+        // 2.用indexOf，看看這個數在陣列裡有沒有
+        // 3.找得到，回傳。找不到，下一輪
+        // 出現問題：可能會找到自己，需要另外寫條件移除。找到後就需要break，不然會回傳兩次[0,1][1,0]
+        var twoSum = function(nums, target) {
+            var i,secondNum;
+            for(i=0;i<nums.length;i++){
+                secondNum = target - nums[i]
+                secondI = nums.indexOf(secondNum) 
+                if(secondI!== -1 && secondI !== i ){
+                    return( [i,secondI]);
+                }
+            }
+        return [];
+        };
+        console.log(twoSum([23,2,7,11,6,15],9))
+
+
+
+        // 參考最佳解法後修改：
+        // 跑一次迴圈並每次做以下的事：
+        // 1.找出期望找到的數 
+        // 2.將陣列的數丟進另一個物件裡比對
+        // 找得到:回傳，找不到：下一輪
+        // 不能使用foreach 因為foreach無法return。return後會自動停止function
+        var twoSum = function(nums, target) {
+            const m = new Map();
+            for(i=0;i<nums.length;i++){
+                let secondValue = target - nums[i];  // 期望找到的數
+                if (m.has(secondValue)) {    // 看看map裡有沒有這個數字
+                    return [m.get(secondValue), i];   // 有的話回傳這個數字對應的index
+                    console.log([m.get(secondValue), i])
+                }
+                m.set(nums[i], i);   // 沒有的話就把陣列每一項以 num:index 的形式搬到map裡，直到找到為止。
+                console.log(m)
+            }
+            return [];
+        };
+        console.log(twoSum([3,2,4],6))
+
+    </script>
+</body>
+</html>

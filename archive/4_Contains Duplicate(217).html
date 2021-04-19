@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+-- Given an array of integers, find if the array contains any duplicates.
+
+Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+
+Example 1:
+
+Input: [1,2,3,1]
+Output: true
+Example 2:
+
+Input: [1,2,3,4]
+Output: false
+
+@param {number[]} nums
+@return {boolean}
+
+有duplicate(重複)相關的幾乎都用set
+</body>
+</html>
+
+<script>
+// 自己寫的
+    var containsDuplicate = function(nums) {
+        var set=new Set(nums);
+        if(set.size<nums.length){
+            return true;
+        }else{
+            false
+        }
+    };
+    containsDuplicate([1,4,2,3])
+
+// 別人的  不用寫這麼多直接 return就好，會自己出現TF
+    var containsDuplicate = function(nums) {
+        return new Set(nums).size < nums.length;
+    };
+
+//其它解法：暴力破解
+    // 雙重迴圈一一比對
+
+// 其它解法：從小排序到大
+    // 從小到大排好，跑迴圈，如果n=n+1 就false
+</script>
+

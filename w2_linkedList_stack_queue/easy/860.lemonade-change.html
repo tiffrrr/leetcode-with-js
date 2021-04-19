@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         // 1.判斷要不要找錢
+            // 5:不用找，直接放money
+            // 10:看看money裡面有沒有5，找錢 or false
+            // 20:看看money裡面有沒有三個5 or 兩10一5   找錢or false
+        // var lemonadeChange = function(bills) {
+        //     var five = 0;
+        //     var ten = 0;
+        //     var twenty = 0;
+        //     for(var i=0;i<bills.length;i++){
+        //         var bill = bills[i]
+        //         if(bill ==5){
+        //             five++;
+        //         }else if (bill == 10){
+        //             if(five >= 1){
+        //                 five--;
+        //                 ten++
+        //             }else{
+        //                 return false;
+        //             }
+        //         }else if (bill ==20){
+        //             if(five >=1 && ten>=1){
+        //                 five--
+        //                 ten--
+        //                 twenty++
+        //             }else if(five >=3){
+        //                 five=five-3;
+        //                 twenty++;
+        //             }else{
+        //                 return false;
+        //             }
+        //         }
+        //     }
+            
+        //     return true;
+        // };
+        // console.log(lemonadeChange([5,5,10,10,20]))
+
+
+        // 看完解答後：一樣的思路只是寫法可以優化
+        // 1.無法直接找20，所以不用紀錄20的張數
+        // 2.bill = 5 /10 /20 沒有先後順序關係，所以不需要用if else if else,全部if就可以
+        // 3.不需要每個if裡面都return false;直接先減，再每次判斷five/ten <0 就return false
+        var lemonadeChange = function(bills) {
+            var five = 0;
+            var ten = 0;
+            for(var i=0;i<bills.length;i++){
+                var bill = bills[i]
+                if(bill ==5){
+                    five++;
+                }
+
+                if (bill == 10){
+                    five--;
+                    ten++;
+                }
+
+                if (bill ==20 ){
+                    if(ten > 0){
+                        five--;
+                        ten--;
+                    }else{
+                        five=five-3;
+                    }
+                if(five < 0 || ten < 0){
+                    return false;
+                }
+            }
+            
+            return true;
+        };
+        console.log(lemonadeChange([5,5,10,10,20]))
+
+
+        
+    </script>
+</body>
+</html>

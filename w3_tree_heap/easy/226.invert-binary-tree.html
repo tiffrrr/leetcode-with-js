@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function TreeNode(val, left, right) {
+            this.val = (val===undefined ? 0 : val)
+            this.left = (left===undefined ? null : left)
+            this.right = (right===undefined ? null : right)
+        }
+        var root = new TreeNode(4,new TreeNode(2,new TreeNode(1),new TreeNode(3)),new TreeNode(7,new TreeNode(6),new TreeNode(9)))
+        console.log(root)
+
+        // recursion解法
+        // var invertTree = function(root) {
+        //     if(!root) return null
+        //     var temp;
+        //     temp = root.left;
+        //     root.left=root.right
+        //     root.right = temp;
+        //     invertTree(root.left)
+        //     invertTree(root.right)
+        //     return root;
+        // };
+        // console.log(invertTree(root))
+
+
+        // queue/dequeue寫法
+        var invertTree = function(root) {
+            const stack = [root]
+            while (stack.length) {
+                // 把stack清空
+                const n = stack.pop();
+                console.log(n)
+                if (n != null) {
+                [n.left, n.right] = [n.right, n.left];
+                // 塞回下一層
+                stack.push(n.left, n.right);
+                console.log(stack)
+                }
+            }
+            return root;
+        };
+        console.log(invertTree(root))
+
+        // function invertTree(root) {
+        // const queue = [root];
+        // while (queue.length) {
+        //     const n = queue.shift();
+        //     if (n != null) {
+        //     [n.left, n.right] = [n.right, n.left];
+        //     queue.push(n.left, n.right);
+        //     }
+        // }
+
+        // return root;
+        // }
+
+
+    </script>
+</body>
+</html>

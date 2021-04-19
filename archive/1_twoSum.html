@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+    <p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+    <p>Given nums = [2, 7, 11, 15], target = 9,</p>
+    <p>Because nums[0] + nums[1] = 2 + 7 = 9,</p>
+    <p>return [0,1]</p>
+    <br>
+    @param {number[]} nums <br>
+    @param {number} target <br>
+    @return {number[]}
+    <p>解法：</p>
+
+
+    <p>
+        一、跑雙重迴圈兩兩相加找出符合的 -->運算次數太多</p>
+    <p>
+        二、BEST
+        跑一次迴圈並每次做以下的事：<br>
+        1.找出期望找到的數 <br>
+        2.將陣列的數丟進另一個物件裡比對<br>
+        找得到:回傳，找不到：下一輪
+    </p>
+    <p>
+        三、i = 0 時， i[0] = 2,
+        所以我們要找的就是 9 - 2，
+        所以我想要 indexOf( 9 - 2)，看看有沒有。
+        都找不到的話 i++，再重覆以上
+    </p>
+    <script>
+        // 解法三
+        var twoSum = function (nums, target) {
+            const len = nums.length;
+            for (let i = 0; i < len; i++) {
+                var ind = nums.indexOf(target - nums[i]);
+                if (ind !== -1 && i !== ind) {
+                    return [i, ind];
+                }
+            }
+        };
+    </script>
+    <script>
+        //解法二 obj版本
+        const twoSum = (nums, target) => {
+            const map = {}; //空的物件 儲存陣列裡每個數的  elemet:index
+            for (let i = 0; i < nums.length; i++) {
+                const another = target - nums[i];  //確認希望找到的數
+                //去map裡比對
+                if (another in map) {             //已存在的話，回傳該數的index
+                    return [map[another], i];
+                }
+                map[nums[i]] = i;                 //不存在的話，在map裡新增key:value 對應 element:index
+            }
+            return null;
+        };
+        console.log("result", twoSum([5, 7, 6], 11))  //0,2
+
+        // 解法二 map版本 ：效能BEST
+        var twoSum = function (nums, target) {
+            const m = new Map();
+            let result;
+            nums.forEach((item, index) => {
+                let indValue = target - item;
+                if (m.has(indValue)) {
+                    result = [m.get(indValue), index];
+                }
+                m.set(item, index);
+            })
+            return result;
+        };
+        // =======================================
+        // i=0
+        // map=[]
+        // another=11-5=6  
+        // map[5]=0
+
+
+        // i=1
+        // map=[5：0]
+        // another=11-7=4
+        // map[7]=1
+
+
+        // i=2
+        // map=[5:0,7:1]
+        // another=11-6=5
+        // map[6]=2
+
+    </script>
+</body>
+
+</html>

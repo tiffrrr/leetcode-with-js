@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>不要被方向綁住，for/arr可以從右到左</p>
+    <script>
+        // 解法1:兩個迴圈超不行QQ
+        // var replaceElements = function(arr) {
+        //     var resultarr = [];
+        //     var findMax = function(arr,max) {
+        //         return arr.reduce(function(max, curValue,index,array) {
+        //             return max > curValue ? max : curValue;
+        //         })
+        //     }
+        //     var max = arr[1];
+        //     arr.forEach((element,i,arr) => {
+        //         arr[i] = -1;
+        //         resultarr[i] = findMax(arr,max)
+
+        //     });
+        //     return resultarr;
+        // };
+        // console.log(replaceElements([17,18,5,4,6,1]))
+
+
+        // 其它人的解法：
+        // 從右邊開始比較的話，不用每次都全部跑迴圈
+        // 因為每次放進新陣列的數，都已經是先前的數比出來最大的了
+        // 所以只要比新的數跟先前比出來最大的數就好
+        const replaceElements = arr => {
+            const result = new Array(arr.length);
+            result[arr.length - 1] = -1;
+            
+            for (let i = arr.length - 1; i > 0; i -= 1) {
+                result[i - 1] = Math.max(arr[i], result[i]);
+                console.log(result)
+                console.log(arr)
+                // result[4] = Math.max(arr[5],result[5])
+                // result[3] = Math.max(arr[4],result[4])
+                // result[2] = Math.max(arr[5],result[5])
+                // result[1] = Math.max(arr[5],result[5])
+            }
+            
+            return result;
+        };
+        replaceElements([17,18,5,4,6,1])
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        JS:語法：求平方: a**2 / Math.pow()
+        while語法，++ -- 不熟
+        two-pointer ：左右比較，大的拖走，剩下的繼續更第二個比（大的放右邊，小的放左邊，中間的最小）
+    </p>
+    <script>
+        // 第一次解法： 乖乖每個*平方再sort
+        // var sortedSquares = function(nums) {
+        //     nums.forEach((element,index,arr) => {
+        //         arr[index] =  element ** 2
+        //     })
+        //     nums.sort((x,y) => x - y);
+        //     return nums
+        // };
+        // console.log(sortedSquares([-7,-3,2,3,11]))
+
+
+        // 參考最佳解法
+
+        var sortedSquares = function(nums) {
+            let result = [];
+            let l = 0;
+            let r = nums.length - 1;
+            let p = r;
+
+            while (l <= r) {
+                if (nums[l] ** 2 > nums[r] ** 2) {
+                    result[p--] = nums[l++] ** 2;
+                } else {
+                    result[p--] = nums[r--] ** 2;
+                }
+                console.log(result)
+            }
+            
+            return result;
+        };
+        // console.log(sortedSquares([-7,-3,2,3,11]))
+        sortedSquares([-7,-3,2,3,11])
+    </script>
+</body>
+</html>
+

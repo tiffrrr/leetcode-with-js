@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        常見解法：recursion,queue(deque)
+    </p>
+    <script>
+        // 一般tree
+        // class Tree{
+        //     constructor(data){
+        //         this._root=new Node(data)
+        //     }
+
+        // }
+        // class Node{
+        //     constructor(data){
+        //         this.data = data;
+        //         this.parent = null;
+        //         this.children = [];
+        //     }
+        // }
+        // var tree = new Tree('one')
+        // tree._root.children.push(new Node('2'))
+        // tree._root.children[0].parent = tree;
+        // tree._root.children.push(new Node('3'))
+        // tree._root.children[0].parent = tree;
+        // console.log(tree._root)
+
+        // binary tree
+        // function TreeNode(val, left, right) {
+        //     this.val = (val===undefined ? 0 : val)
+        //     this.left = (left===undefined ? null : left)
+        //     this.right = (right===undefined ? null : right)
+        // }
+        // var root = new TreeNode(1,2,3)
+
+
+        //       1
+        //    2      3
+        // 4    5  6    7
+        // queue/deque 解法
+        // var isSameTree = function(p, q) {
+        //     let stack = [[p,q]];
+            
+        //     while (stack.length){
+        //         let [x,y] = stack.shift();
+                
+        //         // if both leaves
+        //         if (x==null && y==null) continue; 
+        //         if(!x || !y) return false;
+        //         if(x.val == y.val){
+        //             stack.push([x.left, y.left]);
+        //             stack.push([x.right, y.right]);
+        //         }
+        //         else return false;
+        //     }
+        //     return true;
+        // }
+
+        // recursion解法
+        // function isSameTree(p, q) {
+        //     if (!p && !q) return true;
+        //     if (!p || !q || p.val !== q.val) return false;
+            
+        //     return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+        // }
+    </script>
+</body>
+</html>

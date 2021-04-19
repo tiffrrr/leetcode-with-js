@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>js語法
+        string 也可以for loop，不用轉換成陣列
+    </p>
+    <script>
+        // 卡關卡太久，解不出來，看解法QQQ
+        // 一開始往拆分組
+        var s="(()())(())(()(()))"
+
+        var snew = '';
+        var count = 0;
+        for (const letter of s) {
+            if(letter =='('){
+                if(count > 0 ){
+                    snew+=letter;
+                }
+                count++
+            }else{
+                count--
+                if(count > 0 ){
+                    snew+=letter;
+                }
+            }
+            console.log(snew)
+        }
+
+        // var s="(( )( ))    (( ))    (( ) ((  )))"
+        // (   count = 0   snew=''  count=1
+        // (   count = 1   snew=(   count=2
+        // )   count = 1   snew=()  count=1
+        // (   count = 1   snew=(   count=2
+        // )   count = 1   snew=()()  count=1
+        // )   count = 0   snew=()()   count=0
+
+        // (   count = 0   snew=()()  count=1
+        // (   count = 1   snew=()()(   count=2
+        // )   count = 1   snew=()()()  count=1
+        // )   count = 0   snew=()()()  count=0
+
+        // (   count = 0   snew=()()()  count=1
+        // (   count = 1   snew=()()()(  count=2
+        // )   count = 1   snew=()()()()  count=1
+        // (   count = 1   snews=()()()(  count=2
+        // (   count = 2   snews=()()()((  count=3
+        // )   count = 2   snews=()()()(()  count=2
+        // )   count = 1   snews=()()()(())  count=1
+        // )   count = 0   snews=()()()(())  count=0
+
+
+
+    </script>
+</body>
+</html>

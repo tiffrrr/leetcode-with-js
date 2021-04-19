@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>JS語法： Math.max(...arr) 就可以找到陣列裡的最大值</p>
+    <script>
+
+        // 第一次嘗試：
+        // 粗心：忘了把max跟count分開，導致永遠算出最後一組連續1，而不是最大連續1。
+
+        // 第二次嘗試：
+        // 去網路上看，思路都差不多，只是寫法可以精進
+        // 值得紀念！感動～
+        // Your runtime beats 98.51 % of javascript submissions
+        // Your memory usage beats 23.14 % of javascript submissions (41.9 MB)
+        // var findMaxConsecutiveOnes = function(nums) {
+        //     var max = 0;
+        //     var count = 0;
+        //     for(i=0;i<nums.length;i++){
+        //         if(nums[i] == 0){
+        //             count = 0;
+        //         }else{
+        //             count++;
+        //             if(count > max){
+        //                 max = count;
+        //             }
+        //         }
+        //         console.log(max)
+        //     }
+        //     return max
+        // };
+        // console.log(findMaxConsecutiveOnes([1,1,1,1,0,1,1,1,0,1,1,0,0,1]))
+
+
+
+        // 同思路寫法優化一點：
+        // 原本陣列每一項分if nums[1] = 0 ,count=0 ， else  count++
+        // 因為只有 
+        var findMaxConsecutiveOnes = function(nums) {
+            var max = 0;
+            var count = 0;
+            for (let i of nums) {
+                max = Math.max(max, count += i);   // 原本分if else,寫count++，其實可以直接都+i,因為+0無影響
+                if (!i) count = 0;   //條件可以簡化，!i 就是 = 0
+            }
+            return max
+        };
+        console.log(findMaxConsecutiveOnes([1,1,1,1,0,1,1,1,0,1,1,0,0,1]))
+
+
+        // 另一種思路：
+        // 把陣列變成文字  111010110 ，再從零為分段點，切割成陣列 ['111','1','11'],在去算長度最大的
+        // return nums.join('').split('0').reduce((max, ones) => Math.max(max, ones.length), 0);
+        // or
+        // return Math.max(...nums.join('').split('0').map(ones => ones.length));
+    </script>
+</body>
+</html>
+
+
+
