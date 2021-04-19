@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      1
+    2    3
+    <!--  
+        node 1 ： 左邊有 +1
+                右邊有 +1
+                回傳左右最大的
+        node2： 
+
+
+    -->
+    <script>
+        var diameterOfBinaryTree = function(root) {
+            let diameter = 0;
+            
+            dfs(root);
+            
+            return diameter;
+            
+            function dfs(node, level) {
+                if (!node) return 0;
+                
+                const left = dfs(node.left);
+                const right = dfs(node.right);
+                
+                // update diameter at every node
+                diameter = Math.max(diameter, left + right);
+
+                // update the largest number of edge so far
+                return 1 + Math.max(left, right);
+            }
+        };
+    </script>
+</body>
+</html>
