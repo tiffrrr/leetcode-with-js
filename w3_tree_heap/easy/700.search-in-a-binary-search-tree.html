@@ -14,19 +14,29 @@
             this.right = (right===undefined ? null : right)
         }
         var root = new TreeNode(4,new TreeNode(2,new TreeNode(1),new TreeNode(3)),new TreeNode(7,new TreeNode(6),new TreeNode(9)))
-        // console.log(root)
+        // recursive
+        // var searchBST = function(root, val) {
+        //     if(!root) {
+        //         return null;
+        //     }
+        //     if(root.val === val) {
+        //         return root;
+        //     }
+        //     // 這兩個一定要return。因recursion是一層一層傳回來，沒有return就等於中間斷掉了。
+        //     if(val < root.val) return searchBST(root.left,val);
+        //     if(val > root.val) return searchBST(root.right,val);
+        // };
+        
+        // while
         var searchBST = function(root, val) {
-            if(!root) {
-                return null;
+            while(root!==null && root.val!==val){
+                if(val < root.val) root=root.left
+                if(val > root.val) root=root.right
             }
-            if(root.val === val) {
-                return root;
-            }
-            // 這兩個一定要return。因recursion是一層一層傳回來，沒有return就等於中間斷掉了。
-            if(val < root.val) return searchBST(root.left,val);
-            if(val > root.val) return searchBST(root.right,val);
+            return root;
         };
-        console.log(searchBST(root, 1))
+
+        // console.log(searchBST(root, 2))
     </script>
 </body>
 </html>

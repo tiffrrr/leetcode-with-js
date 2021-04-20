@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Your runtime beats 82.73 % of javascript submissions
+        // Your memory usage beats 79.51 % of javascript submissions (40.2 MB)
+        var duplicateZeros = function(arr) {
+            var length = arr.length //8
+            var i=0;
+            while(i<= length){
+                if(arr[i] == 0 ){
+                    arr.splice(i,0,0);
+                    arr.pop();
+                    i=i+2;
+                }else{
+                    i++;
+                }
+            }
+            console.log(arr)
+        };
+        duplicateZeros([1,0,2,3,0,4,5,0] )
+    </script>
+</body>
+</html>

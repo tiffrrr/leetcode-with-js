@@ -18,26 +18,35 @@
 
     -->
     <script>
-        var diameterOfBinaryTree = function(root) {
-            let diameter = 0;
+        // var diameterOfBinaryTree = function(root) {
+        //     let diameter = 0;
             
-            dfs(root);
+        //     dfs(root);
             
-            return diameter;
+        //     return diameter;
             
-            function dfs(node, level) {
-                if (!node) return 0;
+        //     function dfs(node, level) {
+        //         if (!node) return 0;
                 
-                const left = dfs(node.left);
-                const right = dfs(node.right);
+        //         const left = dfs(node.left);
+        //         const right = dfs(node.right);
                 
-                // update diameter at every node
-                diameter = Math.max(diameter, left + right);
+        //         // update diameter at every node
+        //         diameter = Math.max(diameter, left + right);
 
-                // update the largest number of edge so far
-                return 1 + Math.max(left, right);
-            }
-        };
+        //         // update the largest number of edge so far
+        //         return 1 + Math.max(left, right);
+        //     }
+        // };
+
+        var diameterOfBinaryTree = function(root) {
+
+        }
+
+        //   2
+        // 1    3
+        //         4
+
     </script>
 </body>
 </html>

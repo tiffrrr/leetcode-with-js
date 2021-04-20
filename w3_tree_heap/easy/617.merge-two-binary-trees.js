@@ -19,6 +19,17 @@
  * @return {TreeNode}
  */
 var mergeTrees = function(root1, root2) {
+    var root3 = new TreeNode(0,null,null);
+    check(root1,root2);
+    function check(root1,root2){
+        if(root1.val && root2.val){
+            root3.val = root1.val+root2.val;
+        };
+        
+        root3.left = check(root1.left,root2.left);
+        root3.right = check(root1.right,root2.right);
+
+    }
     
 };
 // @lc code=end

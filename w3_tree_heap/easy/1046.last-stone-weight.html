@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 舊寫法
+        // var lastStoneWeight = function(stones) {
+        //     function sortStone(stones){
+        //         stones.sort(function(a,b){
+        //             return a-b
+        //         })
+        //     }
+        //     sortStone(stones);
+
+        //     while(stones.length > 1){
+        //         result = stones.pop() - stones.pop() 
+        //         if(result != 0){
+        //             stones.push(result)
+        //         }
+        //         sortStone(stones);
+        //     }
+        // };
+        // console.log(lastStoneWeight([2,7,4,1,8,1]))
+        
+        //  參考最佳寫法改寫：邏輯差不多
+        var lastStoneWeight = function(stones) {
+            if(stones.length ==1){
+                return stones[0];
+            }else{
+                return lastStoneWeight(stones.sort((a, b) => a - b).concat(stones.pop() - stones.pop()))
+            }
+        };
+        console.log(lastStoneWeight([2,7,4,1,8,1]))
+
+    </script>
+</body>
+</html>
