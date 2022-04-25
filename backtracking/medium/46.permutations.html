@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>js語法：Array(letters.length).fill(false) </p>
+    <p>continue不熟</p>
+    <p>Array.from深拷貝不熟</p>
+    <p>for迴圈裡的變數i沒寫let!</p>
+    <p>// make a deep copy since otherwise we'd be append the same list over and over
+        res.push(Array.from(path));</p>
+    <script>
+        var permute = function(letters) {
+            let res = [];
+            dfs(letters, [], Array(letters.length).fill(false), res);
+            return res;
+        }
+
+        function dfs(letters, path, used, res) {
+            if (path.length == letters.length) {
+                // make a deep copy since otherwise we'd be append the same list over and over
+                res.push(Array.from(path));
+                console.log('res',res)
+                return;
+            }
+            for (let i = 0; i < letters.length; i++) {
+                console.log('進入for迴圈',i)
+                // skip used letters
+                if (used[i]) continue;
+                // add letter to permutation, mark letter as used
+                path.push(letters[i]);
+                console.log('進入遞迴前path',path)
+
+                used[i] = true;
+                console.log('進入遞迴前used',used)
+
+                dfs(letters, path, used, res);
+                // remove letter from permutation, mark letter as unused
+                path.pop();
+                console.log('進入遞迴後path',path)
+
+                used[i] = false;
+                console.log('進入遞迴後used',used)
+
+            }
+        }
+        permute('123');
+    </script>
+<p>
+    空的，開始選擇:
+    dfs ([123, [] ,[F,F,F],[]])
+    i=0
+        [123,[1],[T,F,F],[]]
+        dfs([123,[1],[T,F,F],[]])
+            i=0
+                continue
+            i=1
+                [123,[1,2],[T,T,F],[]]
+                dfs([123,[1,2],[T,T,F],[]])
+                    i=0
+                        continue
+                    i=1
+                        continue
+                    i=2
+                        [123,[1,2,3],[T,T,T],[]]
+                        dfs([123,[1,2,3],[T,T,T],[]])
+                            <!-- 滿足結束條件，返回上一層後繼續執行 -->
+                            res=[[1,2,3]] return
+                        [123,[1,2],[T,T,F],[[1,2,3]]]
+                        <!-- 迴圈結束，返回上一層 -->
+                [123,[1],[T,F,F],[[1,2,3]]]
+            i=2
+                [123,[1,3],[T,F,T],[[1,2,3]]]
+                dfs([123,[1,3],[T,F,T],[[1,2,3]]])
+                    i=0
+                        continue
+                    i=1
+                        [123,[1,3,2],[T,T,T],[[1,2,3]]]
+                        dfs([123,[1,3,2],[T,T,T],[[1,2,3]]])
+                            <!-- 滿足結束條件，返回上一層後繼續執行 -->
+                            res=[[1,2,3],[1,3,2]] return
+                        [123,[1,3],[T,F,T],[[1,2,3],[1,3,2]]]
+                    i=2
+                        continue
+                        <!-- 迴圈結束，返回上一層 -->
+                [123,[1],[T,F,F],[[1,2,3],[1,3,2]]]
+            <!-- 迴圈結束，返回上一層 -->
+        [123,[],[F,F,F],...]
+    i=1
+        [123,[2],[F,T,F],...]
+        ...
+                
+            
+
+
+                        
+            
+                
+
+
+
+
+
+    </p>
+</body>
+</html>
