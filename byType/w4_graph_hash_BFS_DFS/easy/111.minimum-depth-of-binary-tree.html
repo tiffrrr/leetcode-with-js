@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>BFS</div>
+    <script>
+        
+        // tree長這樣：
+            // {
+            //     val:3,
+            //     left:{
+            //         val:9,
+            //         left:null,
+            //         right:null
+            //     },
+            //     right:{
+            //         val:20,
+            //         left:{val:15,left:null,right:null},
+            //         right:{val:17,left:null,right:null},
+            //     },
+            // },
+
+        function TreeNode(val, left, right) {
+            this.val = (val===undefined ? 0 : val)
+            this.left = (left===undefined ? null : left)
+            this.right = (right===undefined ? null : right)
+        }
+        var root = new TreeNode(
+                3,
+                new TreeNode(
+                    20,
+                    new TreeNode(
+                        15,
+                        null,
+                        null,
+                    ),
+                    new TreeNode(
+                        7,
+                        null,
+                        null,
+                    ),
+                ),
+                new TreeNode(
+                    9,
+                    null,
+                    null,
+                ),
+            )
+        var minDepth = function(root) {
+            //沒有的話=0 
+            if(!root) return 0;
+            // 一定有一層=1
+            let depth = 1;
+            // queue:每層待判斷的陣列（長度等於每層裡）有幾個
+            let queue = [root];
+            if(!root.left && !root.right) return depth;
+
+            // 開始遍歷所有層數
+            while(queue.length > 0 ){
+                let queueLength = queue.length;
+                // 把每層裡面每一個遍歷
+                for(let i = 0; i < queueLength; i++){
+                    // 每一個挑出來判斷（從queue裡拿出）
+                    let node = queue.shift();
+                    // 到達終點：返回
+                    if(!node.left && !node.right) return depth;
+                    // 沒到達終點，準備進入下一層（把下一層的每個放入queue）
+                    else{
+                        if(node.left) queue.push(node.left);
+                        if(node.right) queue.push(node.right);
+                    }
+                }
+                // 確認該層都無終點後，增加步數，進入下一層
+                depth++;
+            }
+    
+            return depth;
+        };
+        console.log(minDepth(root))
+
+        
+    </script>
+</body>
+</html>
