@@ -10,17 +10,21 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-    const m = new Map();
-    for(i=0;i<nums.length;i++){
-        let secondValue = target - nums[i];
-        if (m.has(secondValue)) {
-            return [m.get(secondValue), i];
+var twoSum = function (nums, target) {
+    // 雙重回圈，效能差
+    // for (var i = 0; i < nums.length; i++) {
+    //     for (var j = i + 1; j < nums.length; j++) {
+    //         if (nums[i] + nums[j] == target) {
+    //             return [i, j]
+    //         }
+    //     }
+    // }
+    for (var i = 0; i < nums.length; i++) {
+        var anotherIndex = nums.indexOf(target - nums[i]);
+        if (anotherIndex > -1 && anotherIndex !== i) {
+            return [i, anotherIndex]
         }
-        m.set(nums[i], i);
     }
-    return [];
 };
-twoSum([2,7,11,15],9);
 // @lc code=end
 
