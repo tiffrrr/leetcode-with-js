@@ -13,18 +13,18 @@
  * }
  */
 /**
- * @param {ListNode} l1
- * @param {ListNode} l2
+ * @param {ListNode} l1   1 3
+ * @param {ListNode} l2   1 2   1123
  * @return {ListNode}
  */
-var mergeTwoLists = function(l1, l2) {
-    let mergedHead = {val:-1,next:null}
+var mergeTwoLists = function (l1, l2) {
+    let mergedHead = { val: -1, next: null }
     let currentNode = mergedHead;
-    while(l1 && l2){
-        if(l1.val <= l2.val){
+    while (l1 && l2) {
+        if (l1.val <= l2.val) {
             currentNode.next = l1
             l1 = l1.next
-        }else{
+        } else {
             currentNode.next = l2
             l2 = l2.next
         }
