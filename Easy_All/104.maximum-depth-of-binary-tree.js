@@ -17,14 +17,16 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var maxDepth = function(root) {
-    if(!root) return 0;
-    var left = maxDepth(root.left);
-    var right = maxDepth(root.right);
-    return 1+Math.max(left,right);
+var maxDepth = function (root) {
+    if (!root) return 0;
+    var leftDepth = maxDepth(root.left);
+    var rightDepth = maxDepth(root.right);
+    return 1 + Math.max(leftDepth, rightDepth)
 };
 
 //   1
 // 2  3
+
 // @lc code=end
 
+// depth不需要額外用變數計算，直接從最下面累加上來就好了

@@ -18,20 +18,28 @@
  * @return {boolean}
  */
 // tree是否對稱
-var isSymmetric = function(root) {
-    if(!root) return true;
-    return check(root.left,root.right)
-    function check(left,right){
-        if(!left && !right) return true;
-        if(!left || !right) return false;
-        if(left.val !== right.val) return false;
-        return check(left.left,right.right)&&check(left.right,right.left)
+var isSymmetric = function (root) {
+    return compare(root.left, root.right);
+    function compare(left, right) {
+        if (!left && !right) { return true }
+        if (!left || !right) { return false }
+        if (left.val !== right.val) { return false }
+        return compare(left.left, right.right) && compare(left.right, right.left)
     }
-
 };
-//          1
+
+//            1
 //     2             2
 //   3    4       4     3
 // 5  6     8    8     6  5
 // @lc code=end
+
+// if (!root) return true;
+// return check(root.left, root.right)
+// function check(left, right) {
+//     if (!left && !right) return true;
+//     if (!left || !right) return false;
+//     if (left.val !== right.val) return false;
+//     return check(left.left, right.right) && check(left.right, right.left)
+// }
 
