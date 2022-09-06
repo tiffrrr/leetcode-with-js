@@ -8,7 +8,7 @@
 /**
  * Initialize your data structure here.
  */
-var MyQueue = function() {
+var MyQueue = function () {
     this.stack = [];
     this.temp = [];
 };
@@ -21,7 +21,7 @@ var MyQueue = function() {
 
 // 都是直接放進去
 // [1,2,3,4]
-MyQueue.prototype.push = function(x) {
+MyQueue.prototype.push = function (x) {
     this.stack.push(x)
 };
 
@@ -35,15 +35,25 @@ MyQueue.prototype.push = function(x) {
 // 再把temp一個一個pop回stack
 // stack = [2,3,4]   temp = []
 
-MyQueue.prototype.pop = function() {
-    while(this.stack.length !==0){
-        this.temp.push(this.stack.pop());
+MyQueue.prototype.pop = function () {
+    var stackLength = this.stack.length;
+    for (var i = 1; i < stackLength; i++) {
+        this.temp.push(this.stack.pop())
     }
-    var first  = this.temp.pop();
-    while(this.temp.length !==0){
-        this.stack.push(this.temp.pop());
+    let first = this.stack.pop();
+    var tempLength = this.temp.length;
+    for (i = 0; i < tempLength; i++) {
+        this.stack.push(this.temp.pop())
     }
     return first;
+    // while(this.stack.length !==0){
+    //     this.temp.push(this.stack.pop());
+    // }
+    // var first  = this.temp.pop();
+    // while(this.temp.length !==0){
+    //     this.stack.push(this.temp.pop());
+    // }
+    // return first;
 
 };
 
@@ -57,31 +67,42 @@ MyQueue.prototype.pop = function() {
 // stack = [1]   temp = [4,3,2]  回傳1
 // 再把temp一個一個pop回stack
 // stack = [2,3,4]   temp = []
-MyQueue.prototype.peek = function() {
-    while(this.stack.length !==0){
-        this.temp.push(this.stack.pop());
+MyQueue.prototype.peek = function () {
+    var stackLength = this.stack.length
+    for (i = 1; i < stackLength; i++) {
+        this.temp.push(this.stack.pop())
     }
-    var first = this.temp.pop();
+    let first = this.stack.pop();
     this.stack.push(first);
-    while(this.temp.length !==0){
-        this.stack.push(this.temp.pop());
+    var temLength = this.temp.length
+    for (i = 0; i < temLength; i++) {
+        this.stack.push(this.temp.pop())
     }
     return first;
+    // while(this.stack.length !==0){
+    //     this.temp.push(this.stack.pop());
+    // }
+    // var first = this.temp.pop();
+    // this.stack.push(first);
+    // while(this.temp.length !==0){
+    //     this.stack.push(this.temp.pop());
+    // }
+    // return first;
 };
 
 /**
  * Returns whether the queue is empty.
  * @return {boolean}
  */
-MyQueue.prototype.empty = function() {
-    if(this.stack.length > 0){
+MyQueue.prototype.empty = function () {
+    if (this.stack.length > 0) {
         return false;
-    }else{
+    } else {
         return true;
     }
 };
 
-/** 
+/**
  * Your MyQueue object will be instantiated and called as such:
  * var obj = new MyQueue()
  * obj.push(x)
@@ -90,4 +111,3 @@ MyQueue.prototype.empty = function() {
  * var param_4 = obj.empty()
  */
 // @lc code=end
-

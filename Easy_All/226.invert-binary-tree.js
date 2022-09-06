@@ -17,15 +17,26 @@
  * @param {TreeNode} root
  * @return {TreeNode}
  */
-var invertTree = function(root) {
-    if(!root) return null
-    var temp;
-    temp = root.left;
-    root.left=root.right
-    root.right = temp;
-    invertTree(root.left)
-    invertTree(root.right)
-    return root;
+var invertTree = function (root) {
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+// var invertTree = function(root) {
+//     if(!root) return null
+//     var temp;
+//     temp = root.left;
+//     root.left=root.right
+//     root.right = temp;
+//     invertTree(root.left)
+//     invertTree(root.right)
+//     return root;
+// };
